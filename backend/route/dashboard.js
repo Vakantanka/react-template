@@ -1,45 +1,44 @@
 const router = require('express').Router();
 const UserCtrl = require("../controller/user");
-const auth = require('./middlewaer/auth');
+const auth = require('../middleware/auth');
+const User = require("../model/User");
 
-router.get('/api/dashboards'), auth({block: true}), async (req, res) => {
-    // send all dashboards
+router.get('/', auth({block: true}), async (req, res) => {
+  // send all dashboards
+  const user = await User.findById(res.locals.userId)
+  res.json({user})
+})    
 
-}
+router.get('/:id', async (req, res) => {
+  // send one dashboard identified by id
+})  
 
-router.get('/api/dashboards/:id/todos'), async (req, res) => {
-    // send id dashboard all todos
-}
-
-router.get('/api/dashboards/:id'), async (req, res) => {
-  // send id dashboard 
-}
-
-router.get('/api/dashboards/:id'), async (req, res) => {
-  // send id dashboard 
-}
-
-router.post('/api/dashboards'), async (req, res) => {
+router.post('/', async (req, res) => {
   // create a dashboard, send back created id
-}
+})  
 
-router.post('/api/dashboards/:id/todos'), async (req, res) => {
-  // create a todo, send back new todo id
-}
+router.patch('/:id', async (req, res) => {
+  // modify dashboard with id
+})  
 
-router.patch('/api/dashboards/:id'), async (req, res) => {
-  // modify id dashboard
-}
+router.delete('/:id', async (req, res) => {
+// delete id dashboard
+})
 
-router.patch('/api/dashboards/:id/todos/:todoId'), async (req, res) => {
-  // modify id todo
-}
+router.get('/:id/todos', async (req, res) => {
+    // send dashboard all todos from dashboard identified by id
+})
 
-router.delete('/api/dashboards/:id'), async (req, res) => {
-  // delete id dashboard
-}
+router.post('/:id/todos', async (req, res) => {
+  // create a todo, send back created todoid
+})
 
-router.delete('/api/dashboards/:id/todos/:todoId'), async (req, res) => {
-  // delete id todo
-}
+router.patch('/:id/todos/:todoId', async (req, res) => {
+  // modify todo identified by todoId
+})
 
+router.delete('/:id/todos/:todoId', async (req, res) => {
+  // delete todo identified by todoId
+})
+
+module.exports = router

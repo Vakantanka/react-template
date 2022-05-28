@@ -30,24 +30,17 @@ const dashboardSchema = Schema({
 });
 
 const userSchema = Schema({
-  name: {
-    type: String
-  },
   username: {
     type: String,
     required: true,  // should be not enough
-    unique: true // !!!
+    unique: true // !!! unique
   },
-  email: {
+  googleId: {
     type: String,
     required: true,  // should be not enough, maybe validation
-    unique: true // !!!
+    unique: true // !!! unique
   },
-  password: {
-    type: String,
-    required: true  // should be not enough, maybe validation
-  },
-  dashboards: [dashboardSchema],
+  dashboards: [dashboardSchema], // default empty list?
   timestamps: {}
 })
 
