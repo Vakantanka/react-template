@@ -7,7 +7,8 @@ const errorHandler = require('./middleware/errorHandler')
 
 const app = express()
 
-app.use(cors({ origin: process.env.APP_URL }))
+// app.use(cors({ origin: process.env.APP_URL }))
+app.use(cors())
 app.use(express.json())
 
 app.use(logger);
@@ -16,6 +17,11 @@ const userRoutes = require('./route/user')
 const dashboardRoutes = require('./route/dashboard')
 app.use('/api/user', userRoutes)
 app.use('/api/dashboards', dashboardRoutes)
+
+app.get('/', cors(process.env.CORS), (req, res) => {
+  console.log("per");
+  res.status(200).json("OK")
+})
 
 // app.get('/api/public', cors(process.env.CORS), (req, res) => {
 //   console.log("public");
