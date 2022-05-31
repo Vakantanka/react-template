@@ -19,7 +19,7 @@ app.use('/api/user', userRoutes)
 app.use('/api/dashboards', dashboardRoutes)
 
 app.get('/', cors(process.env.CORS), (req, res) => {
-  console.log("per");
+  // console.log("per");
   res.status(200).json("OK")
 })
 
